@@ -1,0 +1,29 @@
+ifeq ($(OSTYPE),cygwin)
+	CLEANUP=rm -f
+	MKDIR=mkdir -p
+	TARGET_EXTENSION=out
+else ifeq ($(OS),Windows_NT)
+	CLEANUP=del /F /Q
+	MKDIR=mkdir
+	TARGET_EXTENSION=exe
+else
+	CLEANUP=rm -f
+	MKDIR=mkdir -p
+	TARGET_EXTENSION=out
+endif
+
+UNITY = /home/vinay/Desktop/Unity-master/src/unity.h
+SOURCE = /home/vinay/Desktop/Task-3/Bar_LED/
+TESTS = /home/vinay/Desktop/Task-3/TEST/
+BUILD = /home/vinay/Desktop/Task-3/Build/
+DEPENDS = /home/vinay/Desktop/Task-3/Build/Depends/
+OBJECTS = /home/vinay/Desktop/Task-3/Build/Objects/
+RESULTS = /home/vinay/Desktop/Task-3/Build/Results/
+
+BUILD_PATHS = $(BUILD) $(DEPENDS) $(OBJECTS) $(RESULTS)
+
+TESTSOURCE = $(wildcard $(TESTS)*.c)
+
+COMPILE=avr-gcc -g -Os -mmcu=atmega2560 -c
+LINK=avr-gcc -g -mmcu=atmega8 -o
+CFLAGS=-I. -I$(UNITY) -I$(SOURCE) -DTEST

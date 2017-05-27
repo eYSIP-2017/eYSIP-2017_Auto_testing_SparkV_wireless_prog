@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include "add.h"
+
+int main(void)
+{
+        int x, y;
+        int sum;
+
+        printf("Enter two integers: ");
+        scanf("%i %i", &x, &y);
+
+        sum = add(x, y);
+        printf("The sum of %i and %i is %i\n", x, y, sum);
+
+        int cube1 = cube(x);
+	int cube2= cube(y);
+        printf("The cube of the entered numbers are %i and %i", cube1, cube2);
+
+        return 0;
+}

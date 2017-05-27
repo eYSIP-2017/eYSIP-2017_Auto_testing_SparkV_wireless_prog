@@ -1,0 +1,8 @@
+#include <stdio.h>
+
+int main()
+{
+char s[5];  // 4 chars + '\0'
+sprintf(s, "%04X", x);
+}
+
