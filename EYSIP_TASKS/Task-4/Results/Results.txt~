@@ -1,0 +1,25 @@
+TESTING MAIN FUNCTION
+Initial value of DDRC = 0x00
+Initial value of PORTC = 0x00
+After execution of the main function the value of DDRC = 0x8
+After the execution of the main function value of PORTC = 0x000
+/home/vinay/Desktop/EYSIP_TASKS/Task-4/Testing/Test.c:49:test_main_1:PASS
+
+TESTING buzzer_on FUNCTION
+Initial value of DDRC = 0x8
+Initial value of PORTC = 0x000
+After execution of the buzzer_on function the value of DDRC = 0x8
+After the execution of the buzzer_on function value of PORTC = 0x8
+/home/vinay/Desktop/EYSIP_TASKS/Task-4/Testing/Test.c:51:test_buzzer_on:PASS
+
+TESTING buzzer_off FUNCTION
+Initial value of DDRC = 0x8
+Initial value of PORTC = 0x8
+After execution of the buzzer_off function the value of DDRC = 0x8
+After the execution of the buzzer_off function value of PORTC = 0x000
+/home/vinay/Desktop/EYSIP_TASKS/Task-4/Testing/Test.c:53:test_buzzer_off:PASS
+
+
+-----------------------
+3 Tests 0 Failures 0 Ignored 
+OK

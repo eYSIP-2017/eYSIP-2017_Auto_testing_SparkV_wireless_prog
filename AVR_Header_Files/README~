@@ -1,0 +1,1 @@
+You must replace the avr/io.h avr/io2560.h and avr/iomxx0_1.h header files with the ones given in this folder 

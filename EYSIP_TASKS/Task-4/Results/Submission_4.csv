@@ -1,0 +1,23 @@
+TESTING MAIN FUNCTION
+Initial value of DDRC = 0x00
+Initial value of PORTC = 0x00
+/home/vinay/Desktop/EYSIP_TASKS/Task-4/Testing/Test.c:126:test_main_1:FAIL: Expected 1000.0 Was 300.0. Function _delay_ms Argument __ms. Function called with unexpected argument value.
+
+TESTING buzzer_on FUNCTION
+Initial value of DDRC = 000
+Initial value of PORTC = 0x000
+After execution of the buzzer_on function the value of DDRC = 000
+After the execution of the buzzer_on function value of PORTC = 0x8
+/home/vinay/Desktop/EYSIP_TASKS/Task-4/Testing/Test.c:54:test_buzzer_on:PASS
+
+TESTING buzzer_off FUNCTION
+Initial value of DDRC = 000
+Initial value of PORTC = 0x8
+After execution of the buzzer_off function the value of DDRC = 000
+After the execution of the buzzer_off function value of PORTC = 0x000
+/home/vinay/Desktop/EYSIP_TASKS/Task-4/Testing/Test.c:56:test_buzzer_off:PASS
+
+
+-----------------------
+3 Tests 1 Failures 0 Ignored 
+FAIL
