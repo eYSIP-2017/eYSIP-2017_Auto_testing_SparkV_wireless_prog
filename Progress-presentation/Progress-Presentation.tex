@@ -1,0 +1,164 @@
+\documentclass[10pt, a4paper]{beamer}
+
+\usetheme{Berkeley}
+\usecolortheme{sidebartab}
+
+\begin{document}
+	\setbeamertemplate{sidebar left}{}
+	\title{Progress Presentation-I}
+	\subtitle{e-Yantra Summer Intership-2016 \\ Testing Embedded C Code, Spark-V Module Development, and Wireless Programming of AVR Microcontrollers }
+	\author{Vinay Manjunath \\
+	Mentor: Parin Chheda}
+	\institute{IIT Bombay}
+	\date{\today}
+	%\addtobeamertemplate{sidebar left}{}{\includegraphics[scale = 0.3]{logowithtext.png}}
+	\frame{\titlepage}
+
+\setbeamertemplate{sidebar left}[sidebar theme]
+\section{Overview of Project}
+\begin{frame}{Overview of Project}
+	Give following details: \\
+	\begin{itemize}
+		\item Project Name:\\
+	        \hspace{.1cm} Testing Embedded C Code, Spark-V Module Development, and \\
+		\hspace{.1cm} Wireless Programming of AVR Microcontrollers \\
+		\item Objective:\\
+		\hspace{.1cm} 1. Develop a Test Enviornment for Embedded C Programs\\
+		\hspace{.1cm} 2. Develop a Method to Wirelessly Program the SPARK V\\
+		\hspace{.1cm} 3. Develop a Video Tutorials for the SPARK V \\
+		\item Deliverables:\\
+		\hspace{.1cm} 1. Automated Test Enviornment for AVR C Programs\\
+		\hspace{.1cm} 2. Wireless Programming Facility of SPARK V\\
+		\hspace{.1cm} 3. Generic wireless Programming of a 40 pin Controller \\
+		\hspace{.1cm} 4. Video tutorials for SPARK V\\
+	\end{itemize}
+\end{frame}
+
+\section{Overview of Tasks for SPARK V Tutorials}
+\begin{frame}{Overview of Tasks for SPARK V Tutorials}
+	\begin{center}
+	\begin{tabular}{ |p{2cm}|p{5cm}|p{1.5cm}| }
+	\hline
+ 	 Tasks & Description & Deadline \\
+	\hline
+ 	 Task 1 & Explore test suite for C viz. Unity, CMock, Ceedling & 2 days \\ 
+	\hline
+	 Task 2 & Write different Test cases for Sample C Programs & 1 day \\ 
+	\hline
+	 Task 3 & Unit Testing for Basic I/O Programs & 2 days \\ 
+	\hline
+	 Task 4 & Unit Testing for PWM and Interrupt based Programs & 2 days \\ 
+	\hline
+	 Task 5 & Develop Python Scripts to Evaluate the Programs & 1 day \\ 
+	\hline
+	 Task 6 & Develop Test Cases for the TBT of FireBird V & 4 days \\ 
+	\hline
+ 	 Task 7 & Developing Guidelines to Writing Testable Programs & 1 day \\
+	\hline
+	 Task 8 & Develop a similar enviornment for Windows & 1 day \\
+	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+
+\section{Overview of Tasks for Testing of AVR C Programs}
+\begin{frame}{Overview of Tasks for SPARK V Tutorials}
+	\begin{center}
+	\begin{tabular}{ |p{2cm}|p{5cm}|p{1.5cm}| }
+	\hline
+ 	 Tasks & Description & Deadline \\
+	\hline
+ 	 Task 1 & Complete Tutorial for I/O in SPARK V & 5 days \\ 
+	\hline
+	 Task 2 & Developing Tutorials for PWM and Interrupts for SPARK V & 3 days \\ 
+	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+\section{Overview of Tasks for Wirelessly Programming AVR Controllers}
+\begin{frame}{Overview of Tasks for Wirelessly Programming AVR Controllers}
+	\begin{center}
+	\begin{tabular}{ |p{2cm}|p{5cm}|p{1.5cm}| }
+	\hline
+ 	 Tasks & Description & Deadline \\
+	\hline
+ 	 Task 1 & Understanding ISP and Working of Bootloaders & 2 days \\ 
+	\hline
+	 Task 2 & Writing a simple bootloader for Atmega 16 using Zigbee & 4 days \\ 
+	\hline
+	 Task 3 & Writing a simple bootloader for Atmega 16 using Zigbee & 4 days \\ 
+	\hline
+	 Task 4 & Wireless Programming of SPARK V & 1 day \\ 
+	\hline
+	 Task 5 & Generic Programming circuit for a 40 pin controller & 2 days \\ 
+	 \hline
+	 Task 6 & Documentation & 3 days \\ 
+	\hline
+	\end{tabular}
+	\end{center}
+\end{frame}
+
+
+\section{Tasks Accomplised}
+\begin{frame}{Tasks Accomplised}
+	\begin{itemize}
+	  \item Explore test suite for C viz. Unity, CMock, Ceedling:\\
+	  \hspace{.1cm} 1. The three test suites were researched and explored. \\
+          \hspace{.1cm} 2. Multiple programs were used to understand how each of the test suites function. \\
+	  \item Write different Test cases for sample C Programs:\\
+	  \hspace{.1cm} 1. Unity and its built in functions were used to test various programs and functions. \\
+          \hspace{.1cm} 2. It was discovered that found to test the main function of any program, that it was required to rename it. \\
+ compiled properly. \\
+	\end{itemize}
+\end{frame}
+
+
+\section{Tasks Accomplised}
+\begin{frame}{Tasks Accomplised}
+	\begin{itemize}
+	  \item Unit Testing for Basic I/O, ISR, PWM Programs:\\
+	  \hspace{.1cm} 1. Editing the Avr-IO Header file to assign the registers to RAM so it can be written to and its content verified. \\
+          \hspace{.1cm} 2. Since the programs are not compiled using AVR-GCC the delay functions have to be mocked.\\
+	  \hspace{.1cm} 3. To test the functionality of an interrupt its interrupt vector has to be called in a function in the main program. \\
+	  \hspace{.1cm} 4. The method of testing of PWM based programs still needs to be explored. \\
+	\end{itemize}
+\end{frame}
+
+\section{Tasks Accomplised}
+\begin{frame}{Tasks Accomplised}
+	\begin{itemize}
+	  \item Developing Python scripts for parsing and development of test cases for the 6 TBT of FireBird V:\\
+	  \hspace{.1cm} 1. Wrote a Python script to parse the submitted document and render it testable. \\
+          \hspace{.1cm} 2. Integrated the script and a make file and with a final level of parsing to produce a automated test.\\
+	  \hspace{.1cm} 3. Automated tests have been developed for Simple Motion Controll, Buzzer, and Timer Programs for the FireBird V \\
+	  \hspace{.1cm} 4. The tests for the reminaing ADC, White line follower, and LCD programs are currently being devloped. \\
+	\end{itemize}
+\end{frame}
+
+\section{Challenges Faced}
+\begin{frame}{Challenges Faced}
+	\begin{itemize}
+		\item Getting Unity to work with native builds.
+		\item Compiling the AVR C code with normal GCC.
+		\item Generating Mock functions and intergrating them with the submitted program.
+		\item Modification of the Main C Program to render it testable via parsing.
+	\end{itemize}
+\end{frame}
+
+\section{Future Plans}
+\begin{frame}{Future Plans}
+	\begin{itemize}
+		\item Guidelines for Writing Unit Tests and Automated an Test Enviornment for Windows.
+		\item Spark V Tutorials.
+		\item Simple Bootloader for Wireless Programming of Spark V. 
+	\end{itemize}
+\end{frame}
+
+
+\section{Thank You}
+\begin{frame}{Thank You}
+	\centering THANK YOU !!!
+\end{frame}
+\end{document}
