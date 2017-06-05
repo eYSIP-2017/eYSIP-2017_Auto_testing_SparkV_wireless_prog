@@ -1,0 +1,6 @@
+Testing/Test.c:102:test_main:PASS
+Testing/Test.c:103:test_buzzer_off:PASS
+Testing/Test.c:104:test_buzzer_on:PASS
+Testing/Test.c:105:test_init_devices:PASS
+Testing/Test.c:106:test_timer4_init:PASS
+Testing/Test.c:107:test_buzzer_pin_config:PASS

@@ -1,0 +1,11 @@
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:115:test_main:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:116:motion_pin_config_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:117:forward_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:118:back_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:119:left_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:120:right_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:121:soft_left_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:122:soft_right_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:123:stop_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:124:soft_left_2_test:PASS
+/home/vinay/Desktop/EYSIP_TASKS/Task-5/Testing/Test.c:125:soft_right_2_test:PASS
