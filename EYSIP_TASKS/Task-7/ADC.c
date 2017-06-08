@@ -1,10 +1,8 @@
 #include </usr/lib/avr/include/avr/io.h>
 #include </usr/lib/avr/include/avr/interrupt.h>
 #define F_CPU 14745600UL
-//#include </usr/lib/avr/include/util/delay.h>
-//#include "../../CMock/lib/mocks/Mockfunctions.h"
-//#include"../../CMock/lib/mocks/Mockfunction1.h"
-#include <math.h> //included to support power function
+#include"../../CMock/lib/mocks/MockADC_Function_Header.h"
+#include <math.h> 
 #include "lcd.c"
 int check[2];
 int check2[1];
@@ -55,7 +53,7 @@ void adc_init()
 
 
 //This Function accepts the Channel Number and returns the corresponding Analog Value 
-unsigned char ADC_Conversion(unsigned char Ch)
+unsigned char ADC_Conversion1(unsigned char Ch)
 {
 	unsigned char a;
 	if(Ch>7)
@@ -81,16 +79,16 @@ unsigned char ADC_Conversion(unsigned char Ch)
 // This Function prints the Analog Value Of Corresponding Channel No. at required Row
 // and Coloumn Location. 
 
-void print_sensor(char row, char coloumn,unsigned char channel)
+void print_sensor1(char row, char coloumn,unsigned char channel)
 {
-	ADC_Value = ADC_Conversion(channel);
+	ADC_Value = ADC_Conversion1(channel);
 	lcd_print(row, coloumn, ADC_Value, 3);
 }
 
 
 // This Function calculates the actual distance in millimeters(mm) from the input
 // analog value of Sharp Sensor. 
-unsigned int Sharp_GP2D12_estimation(unsigned char adc_reading)
+unsigned int Sharp_GP2D12_estimation1(unsigned char adc_reading)
 {
 	float distance;
 	unsigned int distanceInt;
@@ -113,7 +111,7 @@ void init_devices (void)
 
 
 //Main Function
-/*
+
 int main_test(void)
 {
 	unsigned int value;
@@ -124,9 +122,9 @@ int main_test(void)
 	
 	//while(1)
 	{
-		//BATT_V = ADC_Conversion(0);
-		//BATT_Voltage = ((ADC_Conversion(0)*100)*0.07902) + 0.7;	//Prints Battery Voltage Status
-		//lcd_print(1,1,BATT_Voltage,4);
+		BATT_V = ADC_Conversion(0);
+		BATT_Voltage = ((ADC_Conversion(0))*0.07902) + 0.7;	//Prints Battery Voltage Status
+		lcd_print(1,1,BATT_Voltage,4);
 
 		print_sensor(1,1,0);							//Prints Battery voltage binary value
 
@@ -139,8 +137,8 @@ int main_test(void)
 
 		print_sensor(2,9,11); 						//Analog Value Of Front Sharp Sensor
 
-		sharp = ADC_conversion(11);						//Stores the Analog value of front sharp connected to ADC 
+		sharp = ADC_Conversion(11);						//Stores the Analog value of front sharp connected to ADC 
 		value = Sharp_GP2D12_estimation(sharp);				//Stores Distance calsulated in a variable "value".
 		lcd_print(2,14,value,3); 						//Prints Value Of Distanc in MM measured by Sharp Sensor.
 	}
-} */
+} 

@@ -1,7 +1,7 @@
 #include </usr/lib/avr/include/avr/io.h>
 #define F_CPU 14745600UL
 //#include </usr/lib/avr/include/util/delay.h>
-//#include "../../CMock/lib/mocks/Mock_ms_delay.c"
+//#include"../../CMock/lib/mocks/MockADC_Function_Header.h"
 
 #define RS 0
 #define RW 1
@@ -165,7 +165,7 @@ void lcd_cursor (char row, char column)
 }
 
 //Function to print any input value up to the desired digit on LCD
-void lcd_print (char row, char coloumn, unsigned int value, int digits)
+void lcd_print1 (char row, char coloumn, unsigned int value, int digits)
 {
 	unsigned char flag=0;
 	if(row==0||coloumn==0)
