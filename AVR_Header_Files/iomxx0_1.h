@@ -277,7 +277,11 @@ EXTERN volatile uint8_t PORTC;
 #define PINF1   1
 #define PINF0   0
 
+#ifndef TEST
 #define DDRF    _SFR_IO8(0x10)
+#else
+EXTERN volatile uint8_t DDRF;
+#endif
 #define DDF7    7
 #define DDF6    6
 #define DDF5    5
@@ -287,7 +291,11 @@ EXTERN volatile uint8_t PORTC;
 #define DDF1    1
 #define DDF0    0
 
+#ifndef TEST
 #define PORTF   _SFR_IO8(0x11)
+#else
+EXTERN volatile uint8_t PORTF;
+#endif
 #define PF7     7
 #define PF6     6
 #define PF5     5
@@ -464,7 +472,11 @@ EXTERN volatile uint8_t PORTC;
 
 /* Reserved [0x2F] */
 
+#ifndef TEST
 #define ACSR    _SFR_IO8(0x30)
+#else
+EXTERN volatile uint8_t ACSR;
+#endif
 #define ACD     7
 #define ACBG    6
 #define ACO     5
@@ -653,7 +665,11 @@ EXTERN volatile uint8_t PORTC;
 #define OCIE3A  1
 #define TOIE3   0
 
+#ifndef TEST
 #define TIMSK4  _SFR_MEM8(0x72)
+#else
+EXTERN volatile uint8_t TIMSK4;
+#endif
 #define ICIE4   5
 #define OCIE4C  3
 #define OCIE4B  2
@@ -691,9 +707,16 @@ EXTERN volatile uint8_t PORTC;
 #endif
 #define ADCW    _SFR_MEM16(0x78)
 #define ADCL    _SFR_MEM8(0x78)
+#ifndef TEST
 #define ADCH    _SFR_MEM8(0x79)
-
+#else
+EXTERN volatile uint8_t ADCH;
+#endif
+#ifndef TEST
 #define ADCSRA  _SFR_MEM8(0x7A)
+#else 
+EXTERN volatile uint8_t ADCSRA;
+#endif
 #define ADEN    7
 #define ADSC    6
 #define ADATE   5
@@ -703,7 +726,11 @@ EXTERN volatile uint8_t PORTC;
 #define ADPS1   1
 #define ADPS0   0
 
+#ifndef TEST
 #define ADCSRB  _SFR_MEM8(0x7B)
+#else
+EXTERN volatile uint8_t ADCSRB;
+#endif
 #define ACME    6
 #if defined(__ATmegaxx0__)
 # define MUX5    3
@@ -712,7 +739,11 @@ EXTERN volatile uint8_t PORTC;
 #define ADTS1   1
 #define ADTS0   0
 
+#ifndef TEST
 #define ADMUX   _SFR_MEM8(0x7C)
+#else
+EXTERN volatile uint8_t ADMUX;
+#endif
 #define REFS1   7
 #define REFS0   6
 #define ADLAR   5
@@ -862,7 +893,11 @@ EXTERN volatile uint8_t PORTC;
 
 /* Reserved [0x9E..0x9F] */
 
-#define TCCR4A  _SFR_MEM8(0xA0)
+#ifndef TEST
+#define TCCR4A  _SFR_MEM8(0x01)
+#else
+EXTERN volatile uint8_t TCCR4A;
+#endif
 #define COM4A1  7
 #define COM4A0  6
 #define COM4B1  5
@@ -872,7 +907,11 @@ EXTERN volatile uint8_t PORTC;
 #define WGM41   1
 #define WGM40   0
 
+#ifndef TEST
 #define TCCR4B  _SFR_MEM8(0xA1)
+#else
+EXTERN volatile uint8_t TCCR4B;
+#endif
 #define ICNC4   7
 #define ICES4   6
 #define WGM43   4
@@ -881,7 +920,11 @@ EXTERN volatile uint8_t PORTC;
 #define CS41    1
 #define CS40    0
 
+#ifndef TEST
 #define TCCR4C  _SFR_MEM8(0xA2)
+#else
+EXTERN volatile uint8_t TCCR4C;
+#endif
 #define FOC4A   7
 #define FOC4B   6
 #define FOC4C   5
@@ -891,17 +934,29 @@ EXTERN volatile uint8_t PORTC;
 /* Combine TCNT4L and TCNT4H */
 #define TCNT4   _SFR_MEM16(0xA4)
 
+#ifndef TEST 
 #define TCNT4L  _SFR_MEM8(0xA4)
 #define TCNT4H  _SFR_MEM8(0xA5)
+#else
+EXTERN volatile uint8_t TCNT4L;
+EXTERN volatile uint8_t TCNT4H;
+#endif
 
 /* Combine ICR4L and ICR4H */
 #define ICR4    _SFR_MEM16(0xA6)
 
+#ifndef TEST
 #define ICR4L   _SFR_MEM8(0xA6)
 #define ICR4H   _SFR_MEM8(0xA7)
+#else
+EXTERN volatile uint8_t ICR4H;
+EXTERN volatile uint8_t ICR4L;
+#endif
 
+#ifndef TEST
 /* Combine OCR4AL and OCR4AH */
 #define OCR4A   _SFR_MEM16(0xA8)
+
 
 #define OCR4AL  _SFR_MEM8(0xA8)
 #define OCR4AH  _SFR_MEM8(0xA9)
@@ -917,6 +972,14 @@ EXTERN volatile uint8_t PORTC;
 
 #define OCR4CL  _SFR_MEM8(0xAC)
 #define OCR4CH  _SFR_MEM8(0xAD)
+#else
+EXTERN volatile uint8_t OCR4AH;
+EXTERN volatile uint8_t OCR4AL;
+EXTERN volatile uint8_t OCR4BH;
+EXTERN volatile uint8_t OCR4BL;
+EXTERN volatile uint8_t OCR4CH;
+EXTERN volatile uint8_t OCR4CL;
+#endif 
 
 /* Reserved [0xAE..0xAF] */
 
@@ -1170,6 +1233,7 @@ EXTERN volatile uint8_t PORTC;
 # define PINJ1  1
 # define PINJ0  0
 
+
 #ifndef TEST
 # define DDRJ   _SFR_MEM8(0x104)
 # define DDJ7   7
@@ -1224,7 +1288,8 @@ EXTERN volatile uint8_t PORTJ;
 # define PINK1  1
 # define PINK0  0
 
-# define DDRK   _SFR_MEM8(0x107)
+#ifndef TEST
+#define DDRK   _SFR_MEM8(0x107)
 # define DDK7   7
 # define DDK6   6
 # define DDK5   5
@@ -1233,8 +1298,16 @@ EXTERN volatile uint8_t PORTJ;
 # define DDK2   2
 # define DDK1   1
 # define DDK0   0
+#else
+EXTERN volatile uint8_t DDRK;
+#endif
 
-# define PORTK  _SFR_MEM8(0x108)
+
+#ifndef TEST
+#define PORTK  _SFR_MEM8(0x108)
+#else
+EXTERN volatile uint8_t PORTK;
+#endif
 # define PK7 7
 # define PK6 6
 # define PK5 5
@@ -1256,16 +1329,9 @@ EXTERN volatile uint8_t PORTJ;
 
 #ifndef TEST
 #define DDRL    _SFR_IO8(0X10A)
-#define DDL7    7
-#define DDL6    6
-#define DDL5    5
-#define DDL4    4
-#define DDL3    3
-#define DDL2    2
-#define DDL1    1
-#define DDL0    0
 #else
 EXTERN volatile uint8_t DDRL;
+#endif
 #define DDL7    7
 #define DDL6    6
 #define DDL5    5
@@ -1274,20 +1340,13 @@ EXTERN volatile uint8_t DDRL;
 #define DDL2    2
 #define DDL1    1
 #define DDL0    0
-#endif
+
 
 #ifndef TEST
 # define PORTL  _SFR_MEM8(0x10B)
-# define PL7 7
-# define PL6 6
-# define PL5 5
-# define PL4 4
-# define PL3 3
-# define PL2 2
-# define PL1 1
-# define PL0 0
 #else
 EXTERN volatile uint8_t PORTL;
+#endif
 # define PL7 7
 # define PL6 6
 # define PL5 5
@@ -1296,13 +1355,17 @@ EXTERN volatile uint8_t PORTL;
 # define PL2 2
 # define PL1 1
 # define PL0 0
-#endif
+
 
 #endif /* __ATmegaxx0__ */
 
 /* Reserved [0x10C..0x11F] */
 
+#ifndef TEST
 #define TCCR5A  _SFR_MEM8(0x120)
+#else 
+EXTERN volatile uint8_t TCCR5A;
+#endif 
 #define COM5A1  7
 #define COM5A0  6
 #define COM5B1  5
@@ -1312,7 +1375,11 @@ EXTERN volatile uint8_t PORTL;
 #define WGM51   1
 #define WGM50   0
 
+#ifndef TEST
 #define TCCR5B  _SFR_MEM8(0x121)
+#else
+EXTERN volatile uint8_t TCCR5B;
+#endif
 #define ICNC5   7
 #define ICES5   6
 #define WGM53   4
@@ -1331,8 +1398,13 @@ EXTERN volatile uint8_t PORTL;
 /* Combine TCNT5L and TCNT5H */
 #define TCNT5   _SFR_MEM16(0x124)
 
+#ifndef TEST
 #define TCNT5L  _SFR_MEM8(0x124)
 #define TCNT5H  _SFR_MEM8(0x125)
+#else
+EXTERN volatile uint8_t TCNT5L;
+EXTERN volatile uint8_t TCNT5H;
+#endif
 
 /* Combine ICR5L and ICR5H */
 #define ICR5    _SFR_MEM16(0x126)
@@ -1343,20 +1415,35 @@ EXTERN volatile uint8_t PORTL;
 /* Combine OCR5AL and OCR5AH */
 #define OCR5A   _SFR_MEM16(0x128)
 
+#ifndef TEST
 #define OCR5AL  _SFR_MEM8(0x128)
 #define OCR5AH  _SFR_MEM8(0x129)
+#else
+EXTERN volatile uint8_t OCR5AH;
+EXTERN volatile uint8_t OCR5AL;
+#endif
 
 /* Combine OCR5BL and OCR5BH */
 #define OCR5B   _SFR_MEM16(0x12A)
 
+#ifndef TEST
 #define OCR5BL  _SFR_MEM8(0x12A)
 #define OCR5BH  _SFR_MEM8(0x12B)
+#else
+EXTERN volatile uint8_t OCR5BH;
+EXTERN volatile uint8_t OCR5BL;
+#endif
 
 /* Combine OCR5CL and OCR5CH */
 #define OCR5C   _SFR_MEM16(0x12C)
 
+#ifndef TEST
 #define OCR5CL  _SFR_MEM8(0x12C)
 #define OCR5CH  _SFR_MEM8(0x12D)
+#else 
+EXTERN volatile uint8_t OCR5CH;
+EXTERN volatile uint8_t OCR5CL;
+#endif 
 
 /* Reserved [0x12E..0x12F] */
 
