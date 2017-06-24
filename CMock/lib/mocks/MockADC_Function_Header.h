@@ -20,12 +20,20 @@ void MockADC_Function_Header_Verify(void);
 
 
 
-#define ADC_Conversion_ExpectAndReturn(cmock_arg1, cmock_retval) ADC_Conversion_CMockExpectAndReturn(__LINE__, cmock_arg1, cmock_retval)
-void ADC_Conversion_CMockExpectAndReturn(int cmock_line, unsigned char cmock_arg1, unsigned char cmock_to_return);
+#define ADC_conversion_IgnoreAndReturn(cmock_retval) ADC_conversion_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void ADC_conversion_CMockIgnoreAndReturn(int cmock_line, unsigned char cmock_to_return);
+#define ADC_conversion_ExpectAndReturn(cmock_arg1, cmock_retval) ADC_conversion_CMockExpectAndReturn(__LINE__, cmock_arg1, cmock_retval)
+void ADC_conversion_CMockExpectAndReturn(int cmock_line, unsigned char cmock_arg1, unsigned char cmock_to_return);
+#define Sharp_GP2D12_estimation_IgnoreAndReturn(cmock_retval) Sharp_GP2D12_estimation_CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void Sharp_GP2D12_estimation_CMockIgnoreAndReturn(int cmock_line, unsigned int cmock_to_return);
 #define Sharp_GP2D12_estimation_ExpectAndReturn(adc_reading, cmock_retval) Sharp_GP2D12_estimation_CMockExpectAndReturn(__LINE__, adc_reading, cmock_retval)
 void Sharp_GP2D12_estimation_CMockExpectAndReturn(int cmock_line, unsigned char adc_reading, unsigned int cmock_to_return);
+#define print_sensor_Ignore() print_sensor_CMockIgnore()
+void print_sensor_CMockIgnore(void);
 #define print_sensor_Expect(row, coloumn, channel) print_sensor_CMockExpect(__LINE__, row, coloumn, channel)
 void print_sensor_CMockExpect(int cmock_line, char row, char coloumn, unsigned char channel);
+#define lcd_print_Ignore() lcd_print_CMockIgnore()
+void lcd_print_CMockIgnore(void);
 #define lcd_print_Expect(row, coloumn, value, digits) lcd_print_CMockExpect(__LINE__, row, coloumn, value, digits)
 void lcd_print_CMockExpect(int cmock_line, char row, char coloumn, unsigned int value, int digits);
 

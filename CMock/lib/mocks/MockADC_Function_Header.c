@@ -6,7 +6,7 @@
 #include "../../../CMock/src/cmock.c"
 #include "MockADC_Function_Header.h"
 
-static const char* CMockString_ADC_Conversion = "ADC_Conversion";
+static const char* CMockString_ADC_conversion = "ADC_conversion";
 static const char* CMockString_Sharp_GP2D12_estimation = "Sharp_GP2D12_estimation";
 static const char* CMockString_adc_reading = "adc_reading";
 static const char* CMockString_channel = "channel";
@@ -18,13 +18,13 @@ static const char* CMockString_print_sensor = "print_sensor";
 static const char* CMockString_row = "row";
 static const char* CMockString_value = "value";
 
-typedef struct _CMOCK_ADC_Conversion_CALL_INSTANCE
+typedef struct _CMOCK_ADC_conversion_CALL_INSTANCE
 {
   int LineNumber;
   unsigned char ReturnVal;
   unsigned char Expected_cmock_arg1;
 
-} CMOCK_ADC_Conversion_CALL_INSTANCE;
+} CMOCK_ADC_conversion_CALL_INSTANCE;
 
 typedef struct _CMOCK_Sharp_GP2D12_estimation_CALL_INSTANCE
 {
@@ -55,9 +55,15 @@ typedef struct _CMOCK_lcd_print_CALL_INSTANCE
 
 static struct MockADC_Function_HeaderInstance
 {
-  CMOCK_MEM_INDEX_TYPE ADC_Conversion_CallInstance;
+  int ADC_conversion_IgnoreBool;
+  unsigned char ADC_conversion_FinalReturn;
+  CMOCK_MEM_INDEX_TYPE ADC_conversion_CallInstance;
+  int Sharp_GP2D12_estimation_IgnoreBool;
+  unsigned int Sharp_GP2D12_estimation_FinalReturn;
   CMOCK_MEM_INDEX_TYPE Sharp_GP2D12_estimation_CallInstance;
+  int print_sensor_IgnoreBool;
   CMOCK_MEM_INDEX_TYPE print_sensor_CallInstance;
+  int lcd_print_IgnoreBool;
   CMOCK_MEM_INDEX_TYPE lcd_print_CallInstance;
 } Mock;
 
@@ -66,12 +72,20 @@ extern jmp_buf AbortFrame;
 void MockADC_Function_Header_Verify(void)
 {
   int cmock_line = TEST_LINE_NUM;
-  UNITY_SET_DETAIL(CMockString_ADC_Conversion);
-  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.ADC_Conversion_CallInstance, cmock_line, CMockStringCalledLess);
+  if (Mock.ADC_conversion_IgnoreBool)
+    Mock.ADC_conversion_CallInstance = CMOCK_GUTS_NONE;
+  UNITY_SET_DETAIL(CMockString_ADC_conversion);
+  UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.ADC_conversion_CallInstance, cmock_line, CMockStringCalledLess);
+  if (Mock.Sharp_GP2D12_estimation_IgnoreBool)
+    Mock.Sharp_GP2D12_estimation_CallInstance = CMOCK_GUTS_NONE;
   UNITY_SET_DETAIL(CMockString_Sharp_GP2D12_estimation);
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.Sharp_GP2D12_estimation_CallInstance, cmock_line, CMockStringCalledLess);
+  if (Mock.print_sensor_IgnoreBool)
+    Mock.print_sensor_CallInstance = CMOCK_GUTS_NONE;
   UNITY_SET_DETAIL(CMockString_print_sensor);
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.print_sensor_CallInstance, cmock_line, CMockStringCalledLess);
+  if (Mock.lcd_print_IgnoreBool)
+    Mock.lcd_print_CallInstance = CMOCK_GUTS_NONE;
   UNITY_SET_DETAIL(CMockString_lcd_print);
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock.lcd_print_CallInstance, cmock_line, CMockStringCalledLess);
 }
@@ -87,37 +101,59 @@ void MockADC_Function_Header_Destroy(void)
   memset(&Mock, 0, sizeof(Mock));
 }
 
-unsigned char ADC_Conversion(unsigned char cmock_arg1)
+unsigned char ADC_conversion(unsigned char cmock_arg1)
 {
   int cmock_line = TEST_LINE_NUM;
-  CMOCK_ADC_Conversion_CALL_INSTANCE* cmock_call_instance;
-  UNITY_SET_DETAIL(CMockString_ADC_Conversion);
-  cmock_call_instance = (CMOCK_ADC_Conversion_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.ADC_Conversion_CallInstance);
-  Mock.ADC_Conversion_CallInstance = CMock_Guts_MemNext(Mock.ADC_Conversion_CallInstance);
+  CMOCK_ADC_conversion_CALL_INSTANCE* cmock_call_instance;
+  UNITY_SET_DETAIL(CMockString_ADC_conversion);
+  cmock_call_instance = (CMOCK_ADC_conversion_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.ADC_conversion_CallInstance);
+  Mock.ADC_conversion_CallInstance = CMock_Guts_MemNext(Mock.ADC_conversion_CallInstance);
+  if (Mock.ADC_conversion_IgnoreBool)
+  {
+    UNITY_CLR_DETAILS();
+    if (cmock_call_instance == NULL)
+      return Mock.ADC_conversion_FinalReturn;
+    Mock.ADC_conversion_FinalReturn = cmock_call_instance->ReturnVal;
+    return cmock_call_instance->ReturnVal;
+  }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
   cmock_line = cmock_call_instance->LineNumber;
   {
-    UNITY_SET_DETAILS(CMockString_ADC_Conversion,CMockString_cmock_arg1);
+    UNITY_SET_DETAILS(CMockString_ADC_conversion,CMockString_cmock_arg1);
     UNITY_TEST_ASSERT_EQUAL_HEX8(cmock_call_instance->Expected_cmock_arg1, cmock_arg1, cmock_line, CMockStringMismatch);
   }
   UNITY_CLR_DETAILS();
   return cmock_call_instance->ReturnVal;
 }
 
-void CMockExpectParameters_ADC_Conversion(CMOCK_ADC_Conversion_CALL_INSTANCE* cmock_call_instance, unsigned char cmock_arg1)
+void CMockExpectParameters_ADC_conversion(CMOCK_ADC_conversion_CALL_INSTANCE* cmock_call_instance, unsigned char cmock_arg1)
 {
   cmock_call_instance->Expected_cmock_arg1 = cmock_arg1;
 }
 
-void ADC_Conversion_CMockExpectAndReturn(int cmock_line, unsigned char cmock_arg1, unsigned char cmock_to_return)
+void ADC_conversion_CMockIgnoreAndReturn(int cmock_line, unsigned char cmock_to_return)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_ADC_Conversion_CALL_INSTANCE));
-  CMOCK_ADC_Conversion_CALL_INSTANCE* cmock_call_instance = (CMOCK_ADC_Conversion_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_ADC_conversion_CALL_INSTANCE));
+  CMOCK_ADC_conversion_CALL_INSTANCE* cmock_call_instance = (CMOCK_ADC_conversion_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
-  Mock.ADC_Conversion_CallInstance = CMock_Guts_MemChain(Mock.ADC_Conversion_CallInstance, cmock_guts_index);
+  Mock.ADC_conversion_CallInstance = CMock_Guts_MemChain(Mock.ADC_conversion_CallInstance, cmock_guts_index);
+  Mock.ADC_conversion_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
-  CMockExpectParameters_ADC_Conversion(cmock_call_instance, cmock_arg1);
+  cmock_call_instance->ReturnVal = cmock_to_return;
+  Mock.ADC_conversion_IgnoreBool = (int)1;
+}
+
+void ADC_conversion_CMockExpectAndReturn(int cmock_line, unsigned char cmock_arg1, unsigned char cmock_to_return)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_ADC_conversion_CALL_INSTANCE));
+  CMOCK_ADC_conversion_CALL_INSTANCE* cmock_call_instance = (CMOCK_ADC_conversion_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
+  memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
+  Mock.ADC_conversion_CallInstance = CMock_Guts_MemChain(Mock.ADC_conversion_CallInstance, cmock_guts_index);
+  Mock.ADC_conversion_IgnoreBool = (int)0;
+  cmock_call_instance->LineNumber = cmock_line;
+  CMockExpectParameters_ADC_conversion(cmock_call_instance, cmock_arg1);
   cmock_call_instance->ReturnVal = cmock_to_return;
   UNITY_CLR_DETAILS();
 }
@@ -129,6 +165,14 @@ unsigned int Sharp_GP2D12_estimation(unsigned char adc_reading)
   UNITY_SET_DETAIL(CMockString_Sharp_GP2D12_estimation);
   cmock_call_instance = (CMOCK_Sharp_GP2D12_estimation_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Sharp_GP2D12_estimation_CallInstance);
   Mock.Sharp_GP2D12_estimation_CallInstance = CMock_Guts_MemNext(Mock.Sharp_GP2D12_estimation_CallInstance);
+  if (Mock.Sharp_GP2D12_estimation_IgnoreBool)
+  {
+    UNITY_CLR_DETAILS();
+    if (cmock_call_instance == NULL)
+      return Mock.Sharp_GP2D12_estimation_FinalReturn;
+    Mock.Sharp_GP2D12_estimation_FinalReturn = cmock_call_instance->ReturnVal;
+    return cmock_call_instance->ReturnVal;
+  }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
   cmock_line = cmock_call_instance->LineNumber;
   {
@@ -144,6 +188,19 @@ void CMockExpectParameters_Sharp_GP2D12_estimation(CMOCK_Sharp_GP2D12_estimation
   cmock_call_instance->Expected_adc_reading = adc_reading;
 }
 
+void Sharp_GP2D12_estimation_CMockIgnoreAndReturn(int cmock_line, unsigned int cmock_to_return)
+{
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Sharp_GP2D12_estimation_CALL_INSTANCE));
+  CMOCK_Sharp_GP2D12_estimation_CALL_INSTANCE* cmock_call_instance = (CMOCK_Sharp_GP2D12_estimation_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
+  memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
+  Mock.Sharp_GP2D12_estimation_CallInstance = CMock_Guts_MemChain(Mock.Sharp_GP2D12_estimation_CallInstance, cmock_guts_index);
+  Mock.Sharp_GP2D12_estimation_IgnoreBool = (int)0;
+  cmock_call_instance->LineNumber = cmock_line;
+  cmock_call_instance->ReturnVal = cmock_to_return;
+  Mock.Sharp_GP2D12_estimation_IgnoreBool = (int)1;
+}
+
 void Sharp_GP2D12_estimation_CMockExpectAndReturn(int cmock_line, unsigned char adc_reading, unsigned int cmock_to_return)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Sharp_GP2D12_estimation_CALL_INSTANCE));
@@ -151,6 +208,7 @@ void Sharp_GP2D12_estimation_CMockExpectAndReturn(int cmock_line, unsigned char 
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
   Mock.Sharp_GP2D12_estimation_CallInstance = CMock_Guts_MemChain(Mock.Sharp_GP2D12_estimation_CallInstance, cmock_guts_index);
+  Mock.Sharp_GP2D12_estimation_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
   CMockExpectParameters_Sharp_GP2D12_estimation(cmock_call_instance, adc_reading);
   cmock_call_instance->ReturnVal = cmock_to_return;
@@ -164,6 +222,11 @@ void print_sensor(char row, char coloumn, unsigned char channel)
   UNITY_SET_DETAIL(CMockString_print_sensor);
   cmock_call_instance = (CMOCK_print_sensor_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.print_sensor_CallInstance);
   Mock.print_sensor_CallInstance = CMock_Guts_MemNext(Mock.print_sensor_CallInstance);
+  if (Mock.print_sensor_IgnoreBool)
+  {
+    UNITY_CLR_DETAILS();
+    return;
+  }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
   cmock_line = cmock_call_instance->LineNumber;
   {
@@ -188,6 +251,11 @@ void CMockExpectParameters_print_sensor(CMOCK_print_sensor_CALL_INSTANCE* cmock_
   cmock_call_instance->Expected_channel = channel;
 }
 
+void print_sensor_CMockIgnore(void)
+{
+  Mock.print_sensor_IgnoreBool = (int)1;
+}
+
 void print_sensor_CMockExpect(int cmock_line, char row, char coloumn, unsigned char channel)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_print_sensor_CALL_INSTANCE));
@@ -195,6 +263,7 @@ void print_sensor_CMockExpect(int cmock_line, char row, char coloumn, unsigned c
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
   Mock.print_sensor_CallInstance = CMock_Guts_MemChain(Mock.print_sensor_CallInstance, cmock_guts_index);
+  Mock.print_sensor_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
   CMockExpectParameters_print_sensor(cmock_call_instance, row, coloumn, channel);
   UNITY_CLR_DETAILS();
@@ -207,6 +276,11 @@ void lcd_print(char row, char coloumn, unsigned int value, int digits)
   UNITY_SET_DETAIL(CMockString_lcd_print);
   cmock_call_instance = (CMOCK_lcd_print_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.lcd_print_CallInstance);
   Mock.lcd_print_CallInstance = CMock_Guts_MemNext(Mock.lcd_print_CallInstance);
+  if (Mock.lcd_print_IgnoreBool)
+  {
+    UNITY_CLR_DETAILS();
+    return;
+  }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
   cmock_line = cmock_call_instance->LineNumber;
   {
@@ -236,6 +310,11 @@ void CMockExpectParameters_lcd_print(CMOCK_lcd_print_CALL_INSTANCE* cmock_call_i
   cmock_call_instance->Expected_digits = digits;
 }
 
+void lcd_print_CMockIgnore(void)
+{
+  Mock.lcd_print_IgnoreBool = (int)1;
+}
+
 void lcd_print_CMockExpect(int cmock_line, char row, char coloumn, unsigned int value, int digits)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_lcd_print_CALL_INSTANCE));
@@ -243,6 +322,7 @@ void lcd_print_CMockExpect(int cmock_line, char row, char coloumn, unsigned int 
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
   Mock.lcd_print_CallInstance = CMock_Guts_MemChain(Mock.lcd_print_CallInstance, cmock_guts_index);
+  Mock.lcd_print_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
   CMockExpectParameters_lcd_print(cmock_call_instance, row, coloumn, value, digits);
   UNITY_CLR_DETAILS();

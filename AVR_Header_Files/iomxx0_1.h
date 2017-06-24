@@ -34,6 +34,7 @@
    ATmega2560 and ATmega2561. */
 #ifndef _AVR_IOMXX0_1_H_
 #define _AVR_IOMXX0_1_H_ 1
+#endif
 
 /* This file should only be included from <avr/io.h>, never directly. */
 
@@ -120,7 +121,11 @@ EXTERN volatile uint8_t PORTA;
 #define PINB1   1
 #define PINB0   0
 
+#ifndef TEST
 #define DDRB    _SFR_IO8(0x04)
+#else
+EXTERN volatile uint8_t DDRB;
+#endif
 #define DDB7    7
 #define DDB6    6
 #define DDB5    5
@@ -130,7 +135,11 @@ EXTERN volatile uint8_t PORTA;
 #define DDB1    1
 #define DDB0    0
 
+#ifndef TEST
 #define PORTB   _SFR_IO8(0x05)
+#else
+EXTERN volatile uint8_t PORTB;
+#endif
 #define PB7     7
 #define PB6     6
 #define PB5     5
@@ -237,7 +246,11 @@ EXTERN volatile uint8_t PORTC;
 #define PD1     1
 #define PD0     0
 
+#ifndef TEST
 #define PINE    _SFR_IO8(0x0C)
+#else
+EXTERN volatile uint8_t PINE;
+#endif
 #define PINE7   7
 #define PINE6   6
 #define PINE5   5
@@ -247,7 +260,10 @@ EXTERN volatile uint8_t PORTC;
 #define PINE1   1
 #define PINE0   0
 
+#ifndef TEST
 #define DDRE    _SFR_IO8(0x0D)
+#else
+EXTERN volatile uint8_t DDRE;
 #define DDE7    7
 #define DDE6    6
 #define DDE5    5
@@ -257,7 +273,11 @@ EXTERN volatile uint8_t PORTC;
 #define DDE1    1
 #define DDE0    0
 
+#ifndef TEST
 #define PORTE   _SFR_IO8(0x0E)
+#else
+EXTERN volatile uint8_t PORTE;
+#endif
 #define PE7     7
 #define PE6     6
 #define PE5     5
@@ -646,7 +666,12 @@ EXTERN volatile uint8_t ACSR;
 #define OCIE0A  1
 #define TOIE0   0
 
+
+#ifndef TEST
 #define TIMSK1  _SFR_MEM8(0x6F)
+#else
+EXTERN volatile uint8_t TIMSK1;
+#endif 
 #define ICIE1   5
 #define OCIE1C  3
 #define OCIE1B  2
@@ -777,7 +802,11 @@ EXTERN volatile uint8_t ADMUX;
 #define AIN1D   1
 #define AIN0D   0
 
+#ifndef TEST
 #define TCCR1A  _SFR_MEM8(0x80)
+#else 
+EXTERN volatile uint8_t TCCR1A;
+#endif 
 #define COM1A1  7
 #define COM1A0  6
 #define COM1B1  5
@@ -787,7 +816,11 @@ EXTERN volatile uint8_t ADMUX;
 #define WGM11   1
 #define WGM10   0
 
+#ifndef TEST 
 #define TCCR1B  _SFR_MEM8(0x81)
+#else
+EXTERN volatile uint8_t TCCR1B;
+#endif
 #define ICNC1   7
 #define ICES1   6
 #define WGM13   4
@@ -806,8 +839,13 @@ EXTERN volatile uint8_t ADMUX;
 /* Combine TCNT1L and TCNT1H */
 #define TCNT1   _SFR_MEM16(0x84)
 
+#ifndef TEST
 #define TCNT1L  _SFR_MEM8(0x84)
 #define TCNT1H  _SFR_MEM8(0x85)
+#else 
+EXTERN volatile uint8_t TCNT1L;
+EXTERN volatile uint8_t TCNT1H;
+#endif
 
 /* Combine ICR1L and ICR1H */
 #define ICR1    _SFR_MEM16(0x86)
@@ -816,10 +854,19 @@ EXTERN volatile uint8_t ADMUX;
 #define ICR1H   _SFR_MEM8(0x87)
 
 /* Combine OCR1AL and OCR1AH */
+#ifndef TEST
 #define OCR1A   _SFR_MEM16(0x88)
+#else
+EXTERN volatile uint16_t OCR1A;
+#endif
 
+#ifndef TEST
 #define OCR1AL  _SFR_MEM8(0x88)
 #define OCR1AH  _SFR_MEM8(0x89)
+#else 
+EXTERN volatile uint8_t OCR1AL;
+EXTERN volatile uint8_t OCR1AH;
+#endif
 
 /* Combine OCR1BL and OCR1BH */
 #define OCR1B   _SFR_MEM16(0x8A)
@@ -1287,7 +1334,7 @@ EXTERN volatile uint8_t PORTJ;
 # define PINK2  2
 # define PINK1  1
 # define PINK0  0
-
+/*
 #ifndef TEST
 #define DDRK   _SFR_MEM8(0x107)
 # define DDK7   7
@@ -1300,9 +1347,10 @@ EXTERN volatile uint8_t PORTJ;
 # define DDK0   0
 #else
 EXTERN volatile uint8_t DDRK;
-#endif
+#endif*/
 
 
+/*
 #ifndef TEST
 #define PORTK  _SFR_MEM8(0x108)
 #else
@@ -1315,7 +1363,7 @@ EXTERN volatile uint8_t PORTK;
 # define PK3 3
 # define PK2 2
 # define PK1 1
-# define PK0 0
+# define PK0 0 */
 
 # define PINL   _SFR_MEM8(0x109)
 # define PINL7  7

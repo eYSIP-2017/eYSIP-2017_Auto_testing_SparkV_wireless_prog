@@ -2,7 +2,7 @@
 #ifndef _MOCK_MS_DELAY_H
 #define _MOCK_MS_DELAY_H
 
-#include "../../../EYSIP_TASKS/Task-4/Testing/_ms_delay.h"
+#include "../_ms_delay.h"
 
 /* Ignore the following warnings, since we are copying code */
 #if defined(__GNUC__) && !defined(__ICC) && !defined(__TMS470__)
@@ -20,6 +20,8 @@ void Mock_ms_delay_Verify(void);
 
 
 
+#define _delay_ms_Ignore() _delay_ms_CMockIgnore()
+void _delay_ms_CMockIgnore(void);
 #define _delay_ms_Expect(__ms) _delay_ms_CMockExpect(__LINE__, __ms)
 void _delay_ms_CMockExpect(int cmock_line, double __ms);
 

@@ -18,6 +18,7 @@ typedef struct _CMOCK__delay_ms_CALL_INSTANCE
 
 static struct Mock_ms_delayInstance
 {
+  int _delay_ms_IgnoreBool;
   CMOCK_MEM_INDEX_TYPE _delay_ms_CallInstance;
 } Mock;
 
@@ -26,6 +27,8 @@ extern jmp_buf AbortFrame;
 void Mock_ms_delay_Verify(void)
 {
   int cmock_line = TEST_LINE_NUM;
+  if (Mock._delay_ms_IgnoreBool)
+    Mock._delay_ms_CallInstance = CMOCK_GUTS_NONE;
   UNITY_SET_DETAIL(CMockString__delay_ms);
   UNITY_TEST_ASSERT(CMOCK_GUTS_NONE == Mock._delay_ms_CallInstance, cmock_line, CMockStringCalledLess);
 }
@@ -48,6 +51,11 @@ void _delay_ms(double __ms)
   UNITY_SET_DETAIL(CMockString__delay_ms);
   cmock_call_instance = (CMOCK__delay_ms_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock._delay_ms_CallInstance);
   Mock._delay_ms_CallInstance = CMock_Guts_MemNext(Mock._delay_ms_CallInstance);
+  if (Mock._delay_ms_IgnoreBool)
+  {
+    UNITY_CLR_DETAILS();
+    return;
+  }
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringCalledMore);
   cmock_line = cmock_call_instance->LineNumber;
   {
@@ -62,6 +70,11 @@ void CMockExpectParameters__delay_ms(CMOCK__delay_ms_CALL_INSTANCE* cmock_call_i
   cmock_call_instance->Expected___ms = __ms;
 }
 
+void _delay_ms_CMockIgnore(void)
+{
+  Mock._delay_ms_IgnoreBool = (int)1;
+}
+
 void _delay_ms_CMockExpect(int cmock_line, double __ms)
 {
   CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK__delay_ms_CALL_INSTANCE));
@@ -69,6 +82,7 @@ void _delay_ms_CMockExpect(int cmock_line, double __ms)
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
   Mock._delay_ms_CallInstance = CMock_Guts_MemChain(Mock._delay_ms_CallInstance, cmock_guts_index);
+  Mock._delay_ms_IgnoreBool = (int)0;
   cmock_call_instance->LineNumber = cmock_line;
   CMockExpectParameters__delay_ms(cmock_call_instance, __ms);
   UNITY_CLR_DETAILS();

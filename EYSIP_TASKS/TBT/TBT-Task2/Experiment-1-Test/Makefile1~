@@ -1,0 +1,15 @@
+# This make file generates Tests as well as builds for a given submission
+
+Testing: Open_Results
+
+Open_Results: Test
+	gedit Results/Submission_1.csv
+
+Test: Compile
+	./Testing/Test > Results/Submission_1.csv
+	
+Compile: 
+	gcc -Os -DTEST -std=c99 ./Submissions/Experiment1.c Experiment_1_test.c ../../../../CMock/lib/mocks/Mock_ms_delay.c ../../../../Unity-master/src/unity.c -o
+	gcc -Os -DTEST -std=c99 ./Submissions/Experiment2.c Experiment_1_test.c ../../../../CMock/lib/mocks/Mock_ms_delay.c ../../../../Unity-master/src/unity.c -o
+	gcc -Os -DTEST -std=c99 ./Submissions/Experiment3.c Experiment_1_test.c ../../../../CMock/lib/mocks/Mock_ms_delay.c ../../../../Unity-master/src/unity.c -o
+	
