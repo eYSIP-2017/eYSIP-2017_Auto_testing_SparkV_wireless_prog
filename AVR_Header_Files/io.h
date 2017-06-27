@@ -96,8 +96,16 @@
 #ifndef _AVR_IO_H_
 #define _AVR_IO_H_
 #define EXTERN
-#include </usr/lib/avr/include/avr/sfr_defs.h>
-#include </usr/lib/avr/include/avr/iom2560.h>
+#include "sfr_defs.h"
+#include "iom2560.h"
+#ifdef TEST
+EXTERN volatile uint8_t DDRK;
+EXTERN volatile uint8_t PORTK;
+EXTERN volatile uint8_t DDRL;
+EXTERN volatile uint8_t PORTL;
+EXTERN volatile uint8_t DDRJ;
+EXTERN volatile uint8_t PORTJ;
+#endif
 /*
 #if defined (__AVR_AT94K__)
 #  include <avr/ioat94k.h>

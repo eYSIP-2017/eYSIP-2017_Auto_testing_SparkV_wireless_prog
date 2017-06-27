@@ -10,7 +10,7 @@ void led_off_topfour(void);
 void led_on_bottomfour(void);
 void led_off_bottomfour(void);
 
-extern int value[5]; 
+extern int value[5]; // Array to store any changes to Port J
 
 
 
@@ -118,40 +118,44 @@ _delay_ms_CMockExpect(1,A);
 }
 
 /*
-* Function Name: test_main
+* Function Name: test_main_1
 * Input: none
 * Output: none
-* Logic: Code to Test the functionality of the main function in the submitted C program.
+* Logic: One of the Unit Test cases to check the functionality of the main function in the submitted C program. 
 */ 
 
 void test_main_1()
 {
   expect_delay(1000);
   expect_delay(1000);
-  main_test();
+  _delay_ms_CMockIgnore();  // Ignores any delays that the user might have used as they are not relevent to the Unit Test.
+  main_test();     
 
-  if (value[1]== 0x00)
+  if (value[1]== 0x00) // Checks if the user has intially turned off all four LEDs
 	{
-	     if(value[2]== 0xF0)
+	     if(value[2]== 0xF0) // Checks if the user has then turned on the top four LEDs
 			{
-			    if (value[3]== 0x00)
+			    if (value[3]== 0x00) // Checks if the user has then turned off the four LEDs
 				{
-				   TEST_ASSERT_EQUAL_INT(0x0F,value[4]);
+				   TEST_ASSERT_EQUAL_INT(0x0F,value[4]); // Checks if the user has then turned on the bottom four LEDs
 				}
-			    else 
+			    else if (value[3]== 0x0F) //Checks if the user has then turns on the bottom four LEDs
 				{
-				    TEST_FAIL();
+				   
 				}
-	      
+	      		    else 
+				{
+					TEST_FAIL(); 
+				}
 
 
 			}
 
-	     else if (value[2]== 0x0F)
+	     else if (value[2]== 0x0F) // Checks if the user then turned on the bottom four LEDs
 			{
-			    if (value[3]== 0x00)
+			    if (value[3]== 0x00) // Checks if the user then turned off the four LEDs
 				{
-				   TEST_ASSERT_EQUAL_INT(0xF0,value[4]);
+				   TEST_ASSERT_EQUAL_INT(0xF0,value[4]); // Checks if the user then turned on the top four LEDs
 				}
 			    else 
 				{
@@ -171,35 +175,45 @@ void test_main_1()
 	}
 }
 
+/*
+* Function Name: test_main_2
+* Input: none
+* Output: none
+* Logic: One of the Unit Test cases to check the functionality of the main function in the submitted C program. 
+*/ 
 
 void test_main_2()
 {
   expect_delay(1000);
   expect_delay(1000);
-  if (value[1]== 0xF0)
+  if (value[1]== 0xF0) // Checks if the user has intially turned on the top four LEDs
 	{
-	     if(value[2]== 0x00)
+	     if(value[2]== 0x00)  // Checks if the user has then turned off the top four LEDs
 			{
-			    if (value[3]== 0x0F)
+			    if (value[3]== 0x0F) // Checks if the user has then turned on the bottom four LEDs
 				{
-				   TEST_ASSERT_EQUAL_INT(0x00,value[4]);
+				   TEST_ASSERT_EQUAL_INT(0x00,value[4]); // Checks if the user has finally turned off the LEDs
 				}
 			    else 
 				{
 				    TEST_FAIL();
 				}
 			}
-	     else if (value[2]== 0xF0)
+	     else if (value[2]== 0xF0) // Checks if the user has then turned off the bottom four LEDs
 			{
 
-			    if (value[3]== 0x0F)
+			    if (value[3]== 0x0F) // Checks if the user has then turned on the bottom four LEDs
 				{
-				   TEST_ASSERT_EQUAL_INT(0x0F,value[4]);
+				   TEST_ASSERT_EQUAL_INT(0x0F,value[4]); // Checks if the user has then turned off the top four LEDs
 				}
 			    else 
 				{
 				    TEST_FAIL();
 				}
+			}
+	     else if (value[2]== 0x0F) // Checks if the user then toggles the top and bottom four LEDs
+			{
+
 			}
 	     else
 		{
@@ -211,34 +225,46 @@ void test_main_2()
 		TEST_FAIL();
 	}
 }
+
+/*
+* Function Name: test_main_3
+* Input: none
+* Output: none
+* Logic: One of the Unit Test cases to check the functionality of the main function in the submitted C program. 
+*/ 
+
 void test_main_3()
 {
   expect_delay(1000);
   expect_delay(1000);
-  if (value[1]== 0x0F)
+  if (value[1]== 0x0F) // Checks if the user has intially turned on the bottom four LEDs
 	{
-	     if(value[2]== 0x00)
+	     if(value[2]== 0x00) // Checks if the user has then turned off the top four LEDs
 			{
-			    if (value[3]== 0xF0)
+			    if (value[3]== 0xF0) // Checks if the user has then turned on the top four LEDs
 				{
-				   TEST_ASSERT_EQUAL_INT(0x00,value[4]);
+				   TEST_ASSERT_EQUAL_INT(0x00,value[4]); // Checks if the user has finally turned off the LEDs
 				}
 			    else 
 				{
 				    TEST_FAIL();
 				}
 			}
-	     else if (value[2]== 0x0F)
+	     else if (value[2]== 0x0F) // Checks if the user has then turned off the top four LEDs
 			{
 
-			    if (value[3]== 0xF0)
+			    if (value[3]== 0xF0) // Checks if the user has then turned on the top four LEDs
 				{
-				   TEST_ASSERT_EQUAL_INT(0xF0,value[4]);
+				   TEST_ASSERT_EQUAL_INT(0xF0,value[4]); // Checks if the user has then turned off the top four LEDs
 				}
 			    else 
 				{
 				    TEST_FAIL();
 				}
+			}
+	     else if (value[2]== 0xF0) // Checks if the user then toggles the top and bottom four LEDs
+			{
+
 			}
 	     else
 		{
@@ -263,6 +289,7 @@ RUN_TEST(test_main_2);
 RUN_TEST(test_main_3);
 clear_ports();
 RUN_TEST(test_led_on_topfour);
+clear_ports();
 RUN_TEST(test_led_on_bottomfour);
 
 }

@@ -5,4 +5,4 @@ Test: Compile
 Compile: 
 	
 clean:
-	rm -rf *.o Makefile1 *.elf ./Temp *.txt
+	rm -rf *.o  Makefile1 *.elf Temp *.txt

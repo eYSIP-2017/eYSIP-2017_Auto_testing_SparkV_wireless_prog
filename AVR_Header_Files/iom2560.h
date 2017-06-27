@@ -35,7 +35,7 @@
 #ifndef _AVR_IOM2560_H_
 #define _AVR_IOM2560_H_ 1
 
-#include </usr/lib/avr/include/avr/iomxx0_1.h>
+#include "iomxx0_1.h"
 
 /* Constants */
 #define SPM_PAGESIZE    256

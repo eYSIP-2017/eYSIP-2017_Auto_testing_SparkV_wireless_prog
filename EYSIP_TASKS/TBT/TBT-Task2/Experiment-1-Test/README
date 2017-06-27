@@ -1,0 +1,9 @@
+Steps to use the automated test.
+
+1. First copy the submissions from the backup folder to the submissions folder.
+2. Copy the back up make file and replace the make file in the Experiment folder.
+3. open the script with geany and make sure that you have set the compiler to python
+4. run the script 
+5. The Grades.csv contains all the grades of the submissions
+6. The reuslts folder contains a results txt file with the Unit Test information for all of the submissions
+7. The submissions must be replaced by the backups each time the test is to be run along with the Makefile and the results folder must be cleared or deleted.
